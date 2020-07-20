@@ -41,7 +41,7 @@ const UserForm = ({
 		    	}}
 			>
 				{
-					({ isValid, setSubmitting, values, handleChange}) => (
+					({ isValid, setSubmitting, values}) => (
 					<StyledForm>
 							<Field 
 								type="text" 

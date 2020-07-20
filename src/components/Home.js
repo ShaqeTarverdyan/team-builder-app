@@ -10,7 +10,6 @@ const Home = ({ loading }) => {
 	if(!token) {
 		return <Redirect to="/login"/>
 	}
-
 	return (
 		<Wrapper>
 			<Teams/>

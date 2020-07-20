@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { AiOutlineLike, AiFillLike } from 'react-icons/ai';
 
-const StyledTopic = styled.div`
+const StyledItem = styled.div`
 	border: 1px solid var(--color-border);
 	border-radius: 10px;
 	padding: 1rem;
@@ -36,7 +36,7 @@ const LIKE = 'like';
 const Item = ({args, ...props}) => {
 	const { title, votedByMe, canDelete, id , description} = args
 	return(
-		<StyledTopic>
+		<StyledItem>
 			<Content>
 				<Title>{title}</Title>
 				<Description>{description}</Description>
@@ -53,7 +53,7 @@ const Item = ({args, ...props}) => {
 					</Icon>
 				}
 			</IconsGroup>
-		</StyledTopic>
+		</StyledItem>
 	)
 }
 export default Item;

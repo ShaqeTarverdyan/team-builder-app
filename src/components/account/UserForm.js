@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 import { FormWrapper, StyledForm, FieldGroup, Label } from '../../generalStyles/index';
 import { connect } from 'react-redux';
 import { fetchCompanies } from '../../store/actions/companyActions';
+import Loader from '../Loader';
 
 const RadioGroup = styled.div`
 	display: flex;
@@ -21,7 +22,8 @@ const UserForm = ({
 		fetchData, 
 		companies,
 		submitTitle,
-		fetchCompanies
+		fetchCompanies,
+		isCreateNewUser
 	}) => {
 
 	useEffect(() => {
@@ -30,10 +32,11 @@ const UserForm = ({
 
 
 	let history = useHistory();
+	const defaultValues = Object.keys(initialValues).length > 0 && initialValues;
 	return (
-		<FormWrapper>
+		defaultValues ? <FormWrapper>
 			<Formik
-				initialValues={initialValues}
+				initialValues={defaultValues}
 				validationSchema={validationSchema}
 				onSubmit={async(values, { setSubmitting }) => {
 			        await fetchData(values, history);
@@ -64,13 +67,13 @@ const UserForm = ({
 								component={Input}
 								value={values.email}
 							/>
-							<Field
+							{isCreateNewUser && <Field
 								type="password" 
 								name="password"
 								placeholder="Your Password..."
 								component={Input}
 								value={values.password}
-							/>
+							/>}
 							<Field
 								type="text"
 								name="avatarUrl"
@@ -140,7 +143,7 @@ const UserForm = ({
 					)
 				}
 			</Formik>
-		</FormWrapper>
+		</FormWrapper> : <Loader/>
 	);
 }
 const mapStateToProps = state => {

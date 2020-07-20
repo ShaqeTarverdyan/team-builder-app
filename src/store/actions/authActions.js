@@ -101,6 +101,7 @@ async function setToken(token) {
 
 
 export const editUser = (updatedUser, history) => {
+	updatedUser = {...updatedUser, companyId: Number(updatedUser.companyId)}
 	return (dispatch) => {
 		const token = localStorage.getItem('signin_token');
 		dispatch({type: CONSTANTS.EDIT_USER_START})

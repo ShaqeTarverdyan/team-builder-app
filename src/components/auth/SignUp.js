@@ -8,7 +8,7 @@ import { fetchCompanies } from '../../store/actions/companyActions';
 import * as Yup from 'yup';
 
 
-const SignUpSchema = Yup.object().shape({
+ export const SignUpSchema = Yup.object().shape({
   firstName: Yup.string()
     .required('Your first name is required.'),
   lastName: Yup.string()
@@ -28,7 +28,10 @@ const SignUpSchema = Yup.object().shape({
   jsExperience: Yup.number()
 	.required('Your jsExperience is required.'),
   reactExperience: Yup.number()
-	.required('Your reactExperience is required.')
+	.required('Your reactExperience is required.'),
+  companyId: Yup.string()
+  	.required('Please select your company')
+
 });
 
 const SignUp = ({ companies, signUp,loading}) => {
@@ -51,6 +54,7 @@ const SignUp = ({ companies, signUp,loading}) => {
 			validationSchema={SignUpSchema}
 			fetchData={signUp}
 			submitTitle="Submit"
+			isCreateNewUser={true}
 		/>
 	)
 }
